@@ -20,3 +20,72 @@
 // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
+
+import axios from "axios";
+
+let theCardContainer = document.querySelector(".cards-container");
+
+axios
+    .get("https://lambda-times-api.herokuapp.com/articles")
+    .then((res)=>{
+        let responseBootstrap = res.data.articles.bootstrap;
+        responseBootstrap.forEach((article)=>{
+            let newArticle = makeArticle(article);
+            theCardContainer.appendChild(newArticle);
+        });
+        let responseJavascript = res.data.articles.javascript;
+        responseJavascript.forEach((article)=>{
+            let newArticle = makeArticle(article);
+            theCardContainer.appendChild(newArticle);
+        });
+        let responseJquery = res.data.articles.jquery;
+        responseJquery.forEach((article)=>{
+            let newArticle = makeArticle(article);
+            theCardContainer.appendChild(newArticle);
+        });
+        let responseNode = res.data.articles.node;
+        responseNode.forEach((article)=>{
+            let newArticle = makeArticle(article);
+            theCardContainer.appendChild(newArticle);
+        });
+        let responseTech = res.data.articles.technology;
+        responseTech.forEach((article)=>{
+            let newArticle = makeArticle(article);
+            theCardContainer.appendChild(newArticle);
+        });
+    })
+    .catch((err)=>{
+        console.log("Error", err)
+    });
+
+let allcards = document.querySelectorAll(".card");
+
+
+function makeArticle({authorName, authorPhoto, headline}){
+    // card container
+    let aCard = document.createElement("div");
+    aCard.classList.add("card");
+    // headline
+    let aHeadline = document.createElement("div");
+    aHeadline.classList.add("headline");
+    aHeadline.textContent = headline;
+    aCard.appendChild(aHeadline);
+    // author container
+    let aAuthorContainer = document.createElement("div");
+    aAuthorContainer.classList.add("author");
+    aCard.appendChild(aAuthorContainer);
+    // author img container
+    let authorImgContainer = document.createElement("div");
+    authorImgContainer.classList.add("img-container");
+    aAuthorContainer.appendChild(authorImgContainer);
+    // author img
+    let authorImg = document.createElement("img");
+    authorImg.src = authorPhoto;
+    authorImgContainer.appendChild(authorImg);
+    // author name
+    let aAuthorName = document.createElement("span");
+    aAuthorName.textContent = authorName;
+    aAuthorContainer.appendChild(aAuthorName);
+    // return the card container
+    return aCard;
+}
