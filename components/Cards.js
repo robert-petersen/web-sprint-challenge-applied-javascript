@@ -86,11 +86,10 @@ function makeArticle({authorName, authorPhoto, headline}){
     let aAuthorName = document.createElement("span");
     aAuthorName.textContent = authorName;
     aAuthorContainer.appendChild(aAuthorName);
-    // return the card container increment id by 1
-    cardIDNumber++
-    console.log(aCard);
+    // event listener
+    aCard.addEventListener("click", (event)=>{
+        console.log(headline);
+    });
+    // return the card container
     return aCard;
 }
-
-// let card = document.querySelector("#1");
-// console.log(card);

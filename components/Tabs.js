@@ -12,7 +12,7 @@
 
 import axios from "axios";
 
-let topicContainer = document.querySelector("div.topics");
+let topicContainer = document.querySelector(".topics");
 
 axios
     .get("https://lambda-times-api.herokuapp.com/topics")
