@@ -58,13 +58,13 @@ axios
         console.log("Error", err)
     });
 
-let allcards = document.querySelectorAll(".card");
-
+let cardIDNumber = 1;
 
 function makeArticle({authorName, authorPhoto, headline}){
     // card container
     let aCard = document.createElement("div");
     aCard.classList.add("card");
+    aCard.id = cardIDNumber;
     // headline
     let aHeadline = document.createElement("div");
     aHeadline.classList.add("headline");
@@ -86,6 +86,11 @@ function makeArticle({authorName, authorPhoto, headline}){
     let aAuthorName = document.createElement("span");
     aAuthorName.textContent = authorName;
     aAuthorContainer.appendChild(aAuthorName);
-    // return the card container
+    // return the card container increment id by 1
+    cardIDNumber++
+    console.log(aCard);
     return aCard;
 }
+
+// let card = document.querySelector("#1");
+// console.log(card);
